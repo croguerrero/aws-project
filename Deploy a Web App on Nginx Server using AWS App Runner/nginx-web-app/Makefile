@@ -1,7 +1,7 @@
 # Variables
 APP_NAME := my-app
 AWS_REGION := us-west-2
-AWS_ACCOUNT_ID := 200281971408
+AWS_ACCOUNT_ID := 200281971408 # Set your AWS account ID
 
 default: deploy_infra
 
@@ -28,13 +28,13 @@ docker_build:
 		--query 'imageDetails[0].imageTags[0]' \
 		--output text
 
-deploy_app_terraform:
-	cd terraform && terraform init && terraform plan 
+plan_tf:
+	cd terraform && terraform init && terraform plan && terraform fmt
 
 deploy_infra:
     $(MAKE):create_ecr
 	$(MAKE):delete_ecr
 	$(MAKE):docker_build
-	$(MAKE):deploy_app_terraform
+	$(MAKE):plan_tf
 	
 	
