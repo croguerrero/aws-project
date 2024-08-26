@@ -12,6 +12,11 @@ To deploy your web application on Nginx Server using AWS App Runner, follow thes
 
 For detailed instructions, refer to the [AWS App Runner Getting Started Guide](https://aws.amazon.com/getting-started/guides/deploy-webapp-apprunner/?ref=gsrchandson).
 
+## Arquicteture
+
+## Architecture
+
+![Architecture Diagram](images/architecture.png)
 
 ## Using Makefile
 
