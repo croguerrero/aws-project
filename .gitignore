@@ -1,0 +1,30 @@
+1. Create a `.gitignore` file.
+2. Add common Terraform and general files/directories to ignore.
+
+### .gitignore Content
+```plaintext
+# Terraform files
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
+*.tfvars.json
+.terraform/
+.terraform.lock.hcl
+
+# Local environment files
+.env
+.env.*
+
+# IDE files
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+```
+
+### Explanation
+- The `.gitignore` file includes patterns to ignore Terraform state files, crash logs, variable files, and the `.terraform` directory.
+- It also includes patterns to ignore environment files, IDE configuration directories, and OS-generated file`:s.

@@ -1,27 +1,52 @@
-# Define el proveedor de AWS
-provider "aws" {
-    region = "us-west-2" # Cambia esto a tu región preferida
+resource "aws_apprunner_auto_scaling_configuration_version" "ngnix-apprunner-autoscaling" {
+  auto_scaling_configuration_name = "demo_auto_scalling"
+  max_concurrency = 100
+  max_size        = 2
+  min_size        = 1
+
+  tags = {
+    Name = "demo_auto_scalling"
+  }
 }
 
-# Crea una aplicación de AWS App Runner
-resource "awsapprunner_service" "my_app" {
-    name        = "my-app"
-    repository  = "https://github.com/myusername/myapp.git" # Cambia esto a la URL de tu repositorio
-    branch      = "main" # Cambia esto a la rama de tu repositorio
-    instance_configuration {
-        cpu    = "1 vCPU"
-        memory = "2 GB"
+resource "aws_apprunner_service" "ngnix-apprunner-service-ecr" {
+  service_name = "demo_apprunner"
+
+  source_configuration {
+    image_repository {
+      image_configuration {
+        port = "80"
+      }
+      image_identifier      = "200281971408.dkr.ecr.us-west-2.amazonaws.com/my-app:latest"
+      image_repository_type = "ECR"
     }
+     authentication_configuration{
+       access_role_arn = aws_iam_role.role.arn
+     }
+    auto_deployments_enabled = true
+  }
+
+  auto_scaling_configuration_arn = aws_apprunner_auto_scaling_configuration_version.ngnix-apprunner-autoscaling.arn
+
+  health_check_configuration {
+          healthy_threshold   = 1
+          interval            = 10
+          path                = "/"
+          protocol            = "TCP"
+          timeout             = 5
+          unhealthy_threshold = 5
+        }
+
+  tags = {
+    Name = "demo_apprunner"
+  }
+  # depends_on = [
+  #   aws_iam_role.role,
+  #   aws_iam_role_policy_attachment.test-attach
+  # ]
 }
 
-# Crea un repositorio en ECR
-resource "aws_ecr_repository" "my_app_ecr" {
-    name = "my-app-ecr"
-}
 
 
 
-# Muestra la URL de la aplicación desplegada
-output "app_url" {
-    value = awsapprunner_service.my_app.service_url
-}
+
