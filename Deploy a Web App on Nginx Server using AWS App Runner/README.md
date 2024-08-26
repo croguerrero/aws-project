@@ -19,3 +19,14 @@ AWS App Runner is a fully managed service that makes it easy to build, deploy, a
 8. **VPC**: AWS App Runner can be deployed in a VPC to provide network isolation and security for your app. You can configure the VPC settings for your app to control inbound and outbound traffic.
 
 9. **Monitoring**: AWS App Runner integrates with Amazon CloudWatch to provide monitoring and alerting capabilities for your app. You can set up alarms and dashboards to track the performance and health of your app.
+
+## Uses Cases for AWS App Runner
+
+1. Frontend and backend web applications
+    Use App Runner for full stack development, including both frontend and backend web applications that use HTTP or HTTPS protocols. Build and run API services, backend web services, websites and more.
+
+2. Microservices and APIs
+    Adopt the best practices of microservice architecture, including loose coupling. With App Runner, you can flexibly scale each component of your application and foster increased agility and innovation.
+
+3. Rapid production deployments
+    App Runner leverages AWS best practices and technologies which help lead to a drastic reduction in your time to market for new applications and features.
