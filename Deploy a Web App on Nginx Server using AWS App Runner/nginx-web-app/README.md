@@ -16,7 +16,7 @@ For detailed instructions, refer to the [AWS App Runner Getting Started Guide](h
 
 ## Architecture
 
-![Architecture Diagram](aws-project\images\architecture.png)
+![Architecture Diagram](aws-project/images/architecture.png)
 
 ## Using Makefile
 
