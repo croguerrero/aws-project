@@ -2,7 +2,7 @@ resource "aws_iam_role" "role" {
   name = "example-role"
 
   assume_role_policy = jsonencode({
-    "Version" : "20240001",
+    "Version" : "2012-10-17",
     "Statement" : [
       {
         "Effect" : "Allow",
@@ -25,5 +25,5 @@ resource "aws_iam_role_policy_attachment" "test-attach" {
 }
 resource "time_sleep" "waitrolecreate" {
   depends_on = [aws_iam_role.role]
-  create_duration = "60s"
+  create_duration = "30s"
 }
